@@ -1,0 +1,476 @@
+﻿Lbl M
+ClLCD
+Outpt(1,1,"====================="
+Outpt(2,1,"      BattleShip     "
+Outpt(3,1,"---------------------"
+Outpt(6,1,"By: OMEGAΩ"
+Menu(1,"Play",P,3,"Exit",E,4,"Con't",C,5,"Inst",I
+
+Lbl I
+ClLCD
+Disp "Step 1:","Mark the coordinates","U=Up","D=Down","L=Left","R=Right"
+Pause
+ClLCD
+Disp "Step 2:","Enter your target"
+Pause
+Goto M
+
+Lbl P
+ClLCD
+[[0,0,0,0,0,0][0,0,0,0,0,0][0,0,0,0,0,0][0,0,0,0,0,0][0,0,0,0,0,0][0,0,0,0,0,0][0,0,0,0,0,0][0,0,0,0,0,0][0,0,0,0,0,0][0,0,0,0,0,0][0,0,0,0,0,0]]→P1S
+P1S→P2S
+P1S→P1H
+P1S→P2H
+
+ClLCD
+Pause "Player 1:"
+For(D,1,5
+	ClLCD
+
+	For(C,3,8
+		Outpt(C,12,"]"
+		Outpt(C,13,C-2
+	End
+
+	For(X,1,11
+		For(Y,1,6
+			If P1S(X,Y)==0
+				Outpt(Y+2,X,"^"
+			If P1S(X,Y)≠0
+			Then
+				If P1S(X,Y)==2
+					Outpt(Y+2,X,"P"
+				If P1S(X,Y)==3
+					Outpt(Y+2,X,"S"
+				If P1S(X,Y)==4
+					Outpt(Y+2,X,"D"
+				If P1S(X,Y)==5
+					Outpt(Y+2,X,"B"
+				If P1S(X,Y)==6
+					Outpt(Y+2,X,"C"
+			End
+		End
+	End
+	
+	If D==1
+	Then
+		Outpt(1,13,"Place"
+		Outpt(2,13,"Your"
+		Outpt(3,13,"CARRIER:"
+		Prompt X,Y
+		InpSt Dir
+		6→B
+		5→S
+	End
+	
+	If D==2
+	Then
+		Outpt(1,13,"Place"
+		Outpt(2,13,"Your"
+		Outpt(3,13,"BTTLSHP:"
+		Prompt X,Y
+		InpSt Dir
+		5→B
+		5→S
+	End
+	
+	If D==3
+	Then
+		Outpt(1,13,"Place"
+		Outpt(2,13,"Your"
+		Outpt(3,13,"DESTRYR:"
+		Prompt X,Y
+		InpSt Dir
+		3→S
+		4→B
+	End
+	
+	If D==4
+	Then
+		Output(1,13,"Place"
+		Output(2,13,"Your"
+		Output(3,13,"SUB:"
+		Prompt X,Y
+		InpSt Dir
+		3→B
+		3→S
+	End
+
+	If D==5
+	Then
+		Outpt(1,13,"Place"
+		Outpt(2,13,"Your"
+		Outpt(3,13,"P.BOAT:"
+		Prompt X,Y
+		InpSt Dir
+		2→B
+		2→S
+	End
+	
+	For(W,1,S
+		If Dir=="U"
+		Then
+			B→P1S(X,Y)
+			Y-1→Y
+		End
+		
+		If Dir=="D"
+		Then
+			B→P1S(X,Y)
+			Y+1→Y
+		End
+		
+		If Dir=="L"
+		Then
+			B→P1S(X,Y)
+			X-1→X
+		End
+		
+		If Dir=="R"
+		Then
+			B→P1S(X,Y)
+			X+1→X
+		End
+	End
+End
+
+ClLCD
+Pause "Player 2:"
+For(D,1,5
+	ClLCD
+
+	For(C,3,8
+		Outpt(C,12,"]"
+		Outpt(C,13,C-2
+	End
+
+	For(X,1,11
+		For(Y,1,6
+			If P2S(X,Y)==0
+				Outpt(Y+2,X,"^"
+			If P2S(X,Y)≠0
+			Then
+				If P2S(X,Y)==2
+					Outpt(Y+2,X,"P"
+				If P2S(X,Y)==3
+					Outpt(Y+2,X,"S"
+				If P2S(X,Y)==4
+					Outpt(Y+2,X,"D"
+				If P2S(X,Y)==5
+					Outpt(Y+2,X,"B"
+				If P2S(X,Y)==6
+					Outpt(Y+2,X,"C"
+			End
+		End
+	End
+	
+	If D==1
+	Then
+		Outpt(1,13,"Place"
+		Outpt(2,13,"Your"
+		Outpt(3,13,"CARRIER:"
+		Prompt X,Y
+		InpSt Dir
+		6→B
+		5→S
+	End
+	
+	If D==2
+	Then
+		Outpt(1,13,"Place"
+		Outpt(2,13,"Your"
+		Outpt(3,13,"BTTLSHP:"
+		Prompt X,Y
+		InpSt Dir
+		5→B
+		5→S
+	End
+	
+	If D==3
+	Then
+		Outpt(1,13,"Place"
+		Outpt(2,13,"Your"
+		Outpt(3,13,"DESTRYR:"
+		Prompt X,Y
+		InpSt Dir
+		3→S
+		4→B
+	End
+	
+	If D==4
+	Then
+		Outpt(1,13,"Place"
+		Outpt(2,13,"Your"
+		Outpt(3,13,"SUB:"
+		Prompt X,Y
+		InpSt Dir
+		3→B
+		3→S
+	End
+
+	If D==5
+	Then
+		Outpt(1,13,"Place"
+		Outpt(2,13,"Your"
+		Outpt(3,13,"P.BOAT:"
+		Prompt X,Y
+		InpSt Dir
+		2→B
+		2→S
+	End
+	
+	For(W,1,S
+		If Dir=="U"
+		Then
+			B→P2S(X,Y)
+			Y-1→Y
+		End
+		
+		If Dir=="D"
+		Then
+			B→P2S(X,Y)
+			Y+1→Y
+		End
+		
+		If Dir=="L"
+		Then
+			B→P2S(X,Y)
+			X-1→X
+		End
+		
+		If Dir=="R"
+		Then
+			B→P2S(X,Y)
+			X+1→X
+		End
+	End
+End
+
+0→P1HIT
+0→P2HIT
+
+Lbl C
+Repeat P1HIT==17 or P2HIT==17
+	ClLCD
+	Pause "Player 1:"
+	ClLCD
+	For(C,3,8
+		Outpt(C,12,"]"
+		Outpt(C,13,C-2
+	End
+	For(X,1,11
+		For(Y,1,6
+			If P1S(X,Y)==0
+				Outpt(Y+2,X,"^"
+			If P1S(X,Y)≠0 and P1S(X,Y)≠10
+			Then
+				If P1S(X,Y)==2
+					Outpt(Y+2,X,"P"
+				If P1S(X,Y)==3
+					Outpt(Y+2,X,"S"
+				If P1S(X,Y)==4
+					Outpt(Y+2,X,"D"
+				If P1S(X,Y)==5
+					Outpt(Y+2,X,"B"
+				If P1S(X,Y)==6
+					Outpt(Y+2,X,"C"
+			End
+			If P1S(X,Y)==10
+				Outpt(Y+2,X,"!"
+		End
+	End
+	
+	Outpt(1,14,"Check"
+	Outpt(2,14,"Your"
+	Outpt(3,14,"Damage"
+	Pause
+	
+	ClLCD
+	For(C,3,8
+		Outpt(C,12,"]"
+		Outpt(C,13,C-2
+	End
+	For(X,1,11
+		For(Y,1,6
+			If P1H(X,Y)==0
+				Outpt(Y+2,X,"^"
+			If P1H(X,Y)==1
+				Outpt(Y+2,X,"*"
+			If P1H(X,Y)==2
+				Outpt(Y+2,X,"-"
+		End
+	End
+	
+	Outpt(1,14,"Mark"
+	Outpt(2,14,"Your"
+	Outpt(3,14,"CORDS!"
+	Prompt X,Y
+	
+	ClLCD
+	If P2S(X,Y)==2
+	Then
+		Pause "Patrol boat HIT!"
+		10→P2S(X,Y
+		1→P1H(X,Y
+		1+P1HIT→P1HIT
+	End
+	If P2S(X,Y)==3
+	Then
+		Pause "Sub HIT!"
+		10→P2S(X,Y
+		1→P1H(X,Y
+		1+P1HIT→P1HIT
+	End
+	If P2S(X,Y)==4
+	Then
+		Pause "Destroyer HIT"
+		10→P2S(X,Y
+		1→P1H(X,Y
+		1+P1HIT→P1HIT
+	End
+	If P2S(X,Y)==5
+	Then
+		Pause "Battleship HIT!"
+		10→P2S(X,Y
+		1→P1H(X,Y
+		1+P1HIT→P1HIT
+	End
+	If P2S(X,Y)==6
+	Then
+		Pause "Carrier HIT!"
+		10→P2S(X,Y
+		1→P1H(X,Y
+		1+P1HIT→P1HIT
+	End
+	If P2S(X,Y)==0
+	Then
+		Pause "MISS!"
+		10→P2S(X,Y
+		2→P1H(X,Y
+	End
+	
+	ClLCD
+	Pause "Player 2:"
+	ClLCD
+	For(C,3,8
+		Outpt(C,12,"]"
+		Outpt(C,13,C-2
+	End
+	For(X,1,11
+		For(Y,1,6
+			If P2S(X,Y)==0
+				Outpt(Y+2,X,"^"
+			If P2S(X,Y)≠0 and P1S(X,Y)≠10
+			Then
+				If P2S(X,Y)==2
+					Outpt(Y+2,X,"P"
+				If P2S(X,Y)==3
+					Outpt(Y+2,X,"S"
+				If P2S(X,Y)==4
+					Outpt(Y+2,X,"D"
+				If P2S(X,Y)==5
+					Outpt(Y+2,X,"B"
+				If P2S(X,Y)==6
+					Outpt(Y+2,X,"C"
+			End
+			If P2S(X,Y)==10
+				Outpt(Y+2,X,"!"
+		End
+	End
+	
+	Outpt(1,14,"Check"
+	Outpt(2,14,"Your"
+	Outpt(3,14,"Damage"
+	Pause
+	
+	ClLCD
+	For(C,3,8
+		Outpt(C,12,"]"
+		Outpt(C,13,C-2
+	End
+	For(X,1,11
+		For(Y,1,6
+			If P2H(X,Y)==0
+				Outpt(Y+2,X,"^"
+			If P2H(X,Y)==1
+				Outpt(Y+2,X,"*"
+			If P2H(X,Y)==2
+				Outpt(Y+2,X,"-"
+		End
+	End
+	
+	Outpt(1,14,"Mark"
+	Outpt(2,14,"Your"
+	Outpt(3,14,"CORDS!"
+	Prompt X,Y
+	
+	ClLCD
+	If P1S(X,Y)==2
+	Then
+		Pause "Patrol boat HIT!"
+		10→P1S(X,Y
+		1→P2H(X,Y
+		1+P2HIT→P1HIT
+	End
+	If P1S(X,Y)==3
+	Then
+		Pause "Sub HIT!"
+		10→P1S(X,Y
+		1→P2H(X,Y
+		1+P2HIT→P1HIT
+	End
+	If P1S(X,Y)==4
+	Then
+		Pause "Destroyer HIT"
+		10→P1S(X,Y
+		1→P2H(X,Y
+		1+P2HIT→P1HIT
+	End
+	If P1S(X,Y)==5
+	Then
+		Pause "Battleship HIT!"
+		10→P1S(X,Y
+		1→P2H(X,Y
+		1+P2HIT→P1HIT
+	End
+	If P1S(X,Y)==6
+	Then
+		Pause "Carrier HIT!"
+		10→P1S(X,Y
+		1→P2H(X,Y
+		1+P2HIT→P1HIT
+	End
+	If P1S(X,Y)==0
+	Then
+		Pause "MISS!"
+		10→P1S(X,Y
+		2→P2H(X,Y
+	End
+End
+
+ClLCD
+If P1HIT==17
+Then
+	Pause "Player 1:"
+	ClLCD
+	Pause "You Win!"
+	ClLCD
+	Pause "Player 2:"
+	ClLCD
+	Pause "You LOSE!"
+End
+
+If P2HIT==17
+Then
+	Pause "Player 1:"
+	ClLCD
+	Pause "YOU LOSE!"
+	ClLCD
+	Pause "Player 2:"
+	ClLCD
+	Pause "You WIN!"
+	ClLCD
+End
+
+Lbl E
+Outpt(1,1,"Thanks for playing!"
