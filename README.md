@@ -10,3 +10,6 @@ This is a repository for the all the progams I wrote on my TI-85 back when I was
 
 ## BATTSHP
 This is a battleship game. It stores four HUGE matricies that take up a ton of memory. It's a good idea to delete these after the game is finished. The game is two player, not single player.
+
+## BLKJK
+This is a black jack game. It was the first successful game I ever wrote. Looking back, I realize it's probably the worst code I've ever written, and honestly, I don't know how it even ran. The `goto`s and the horrendous inefficiency in picking the cards. Really, you shouldn't look at this code.

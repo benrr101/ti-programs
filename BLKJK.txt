@@ -1,0 +1,393 @@
+﻿ClLCD
+Outpt(1,1,"====================="
+Outpt(2,7,"Black Jack"
+Outpt(3,1,"---------------------"
+Outpt(7,1,"Press enter to play!"
+Pause
+Goto BLKBEG
+
+Lbl BLKBEG
+ClLCD
+Outpt(1,1,"Shuffeling Cards")
+For(D,1,50
+End
+
+ClLCD
+Goto CONT
+2000→POT
+
+Goto SHOPOT
+
+Lbl SHOPOT
+Disp "You have"
+Disp POT
+Pause
+Outpt(4,1,"Ready to play?"
+Pause
+Goto WAGER
+
+Lbl WAGER
+ClLCD
+Disp "Enter your wager"
+Input WAGERN
+If WAGERN>POT or WAGERN≤.5
+Then
+	Goto NOA
+End
+round(WAGERN,0)→WAGERN
+Outpt(2,1,"You are wagering"
+If WAGERN>100000000
+Then
+	Disp "1 Schmillion $"
+Else
+	Disp WAGERN
+End
+Pause
+ClLCD
+Disp "Your cards:"
+0→CRDCT
+0→DLRNO
+0→PLRNO
+Goto BLKGA
+
+Lbl NOA
+ClLCD
+Disp "BET AGAIN"
+Pause
+Goto WAGER
+
+Lbl BLKGA
+If CRDCT==0
+Then
+	Goto CRDIF
+End
+If CRDCT==1
+Then
+	Disp CC
+	CC+PLRNO→PLRNO
+	Goto CRDIF
+End
+If CRDCRT==2
+Then
+	Disp CC
+	CC+PLRNO→PLRNO
+	Goto CRDIF
+End
+If CRDCT==3
+Then
+	CC+DLRNO→DLRNO
+	Goto CRDIF
+End
+If CRDCT==4
+Then
+	CC+DLRNO→DLRNO
+	If DLRNO<15
+	Then
+		Goto CRDIF
+	End
+End
+If CRDCT==5
+Then
+	6→CRDCT
+	CC+DLRNO→DLRNO
+End
+If CRDCT==6
+Then
+	Goto HSIF
+End
+If CRDCT≥7
+Then
+	Disp CC
+	CC+PLRNO→PLRNO
+	Goto HSIF
+End
+
+Lbl CRDIF
+0→CC
+round(rand(51),0)→CS
+If CS==0
+Then
+	Menu(2,"1",ONBH,4,"1",ELEBH
+	
+	Lbl ONBH
+	1→CC
+	Goto BLKGA
+	
+	Lbl ELEBH
+	11→CC
+End
+If CS==1
+Then
+	Menu(2,"1",ONAD,4,"1",EVLAD
+	
+	Lbl ONAD
+	1→CC
+	Goto BLKGA
+	
+	Lbl EVLAD
+	11→CC
+End
+If CS==2
+Then
+	Menu(2,"1",ONCS,4,"1",ELECS
+	
+	Lbl ONCS
+	1→CC
+	Goto BLKGA
+	
+	Lbl ELECS
+	11→CC
+End
+If CS==3
+Then
+	Menu(2,"1",ONDC,4,"1",ELEDC
+	
+	Lbl ONDC
+	1→CC
+	Goto BLKGA
+	
+	Lbl ELEDC
+	11→CC
+End
+If CS==4
+Then
+	2→CC
+End
+If CS==5
+Then
+	2→CC
+End
+If CS==6
+Then
+	2→CC
+End
+If CS==7
+Then
+	2→CC
+End
+If CS==8
+Then
+	3→CC
+End
+If CS==9
+Then
+	3→CC
+End
+If CS==10
+Then
+	3→CC
+End
+If CS==11
+Then
+	3→CC
+End
+If CS==12
+Then
+	4→CC
+End
+If CS==13
+Then
+	4→CC
+End
+If CS==14
+Then
+	4→CC
+End
+If CS==15
+Then
+	4→CC
+End
+If CS==16
+Then
+	5→CC
+End
+If CS==17
+Then
+	5→CC
+End
+If CS==18
+Then
+	5→CC
+End
+If CS==19
+Then
+	5→CC
+End
+If CS==20
+Then
+	6→CC
+End
+If CS==21
+Then
+	6→CC
+End
+If CS==22
+Then
+	6→CC
+End
+If CS==23
+Then
+	6→CC
+End
+If CS==24
+Then
+	7→CC
+End
+If CS==25
+Then
+	7→CC
+End
+If CS==26
+Then
+	7→CC
+End
+If CS==27
+Then
+	7→CC
+End
+If CS==28
+Then
+	8→CC
+End
+If CS==29
+Then
+	8→CC
+End
+If CS==30
+Then
+	8→CC
+End
+If CS==31
+Then
+	8→CC
+End
+If CS==32
+Then
+	9→CC
+End
+If CS==33
+Then
+	9→CC
+End
+If CS==34
+Then
+	9→CC
+End
+If CS==35
+Then
+	9→CC
+End
+If CS==36
+Then
+	10→CC
+End
+If CS==37
+Then
+	10→CC
+End
+If CS==38
+Then
+	10→CC
+End
+If CS==39
+Then
+	10→CC
+End
+If CS==40
+Then
+	10→CC
+End
+If CS==41
+Then
+	10→CC
+End
+If CS==42
+Then
+	10→CC
+End
+If CS==43
+Then
+	10→CC
+End
+If CS==44
+Then
+	10→CC
+End
+If CS==45
+Then
+	10→CC
+End
+If CS==46
+Then
+	10→CC
+End
+If CS==47
+Then
+	10→CC
+End
+If CS==48
+Then
+	10→CC
+End
+If CS==49
+Then
+	10→CC
+End
+If CS==50
+Then
+	10→CC
+End
+If CS==51
+Then
+	10→CC
+End
+CRDCT+1→CRDCT
+Goto BLKGA
+
+Lbl HSIF
+Menu(1,"Hit",CRDIF,5,"Stand",WNIIF
+
+Lbl WINIF
+ClLCD
+Disp "Dealer has:"
+Disp DLRNO
+Disp "You have:
+Disp PLRNO
+Pause
+If PLRNO==DLRNO or DLRNO==21 or PLRNO>21
+Then
+	Goto DLRWN
+Else
+	If PLRNO≤21 and PLRNO>DLRNO
+	Then
+		Goto PLRWN
+	Else
+		Goto PLRWN
+
+Lbl DLRWN
+Disp "You lose..."
+Pause
+POT-WAGERN→POT
+Goto CONT
+
+Lbl PLRWN
+Disp "You Win!!"
+Pause
+WAGERN+POT→POT
+Goto CONT
+
+Lbl CONT
+ClLCD
+If POT==0
+Then
+	Disp "You have no ka-ching"
+	Pause
+	Goto QUITB
+End
+Disp "¿Continue?"
+Menu(1,"Yes",SHOPOT,5,"No",QUITB
+
+Lbl QUITB
+ClLCD
+Disp "Thanks for playing!"
+Disp "Coded By OMEGAΩ"
