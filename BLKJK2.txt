@@ -1,0 +1,182 @@
+ClLCD
+Outpt(1,1,"====================="
+Outpt(2,6,"Black Jack2"
+Outpt(3,1,"---------------------"
+Outpt(7,1,"By: OMEGAΩ"
+Menu(1,"Play",P,5,"Quit",Q
+
+Lbl P
+0→E
+Repeat E==1
+	ClLCD
+	
+	"Verify the player has money to gamble.
+	"This uses a global variable called POT, which was used for multiple games
+	If POT==0:Then
+		Goto Q
+	End
+	Disp "You Have:":Pause POT
+
+	"Initialize for this game
+	0→WAG		"The amount to wager
+	0→WE		"Exit condition for wager entering loop
+	0→ACT		"Number of aces dealt
+	0→PC		"Player card total
+	0→DC		"Dealer card total
+
+	"Loop until a valid wager is inputted
+	Repeat WE==1
+		ClLCD
+		Disp "Enter Your Wager:"
+		Input WAG
+		round(WAG,0→WAG
+
+		If WAG≤POT and WAG>0
+		Then
+			1→WE
+		Else
+			ClLCD:Pause "Invalid Wager..."
+		End
+	End
+
+	ClLCD
+	Disp "You are wagering:":Pause WAG
+
+	"Start handing out cards
+	ClLCD
+	0→GE	"Exit condition for getting cards
+	0→PCC	"Player's card count
+	ClLCD
+	Disp "Your Cards:"
+	Repeat GE==1
+		0→C 	"The randomly generated card
+		round(rand(51),0)→C
+
+		"Specia case: An ace was dealt
+		If C≤3:Then
+			Disp "                  Ace"
+			1+ACT
+		End
+
+		"Loop by fours to determine the value of the random card if it was a number card
+		For(CI,4,32,4
+			If C≥CI and C<(CI+4)
+			Then
+				Disp (CI/4+1)
+				(CI/4+1)+PC→PC		"Calculate new player's card total
+			End
+		End
+
+		"Any card higher than 36 was a face card
+		If C≥36:Then
+			Disp 10
+			10+PC→PC
+		End
+
+		"Only give action options if the player has at least two cards
+		1+PCC→PCC
+		If PCC≥2:Then
+			Outpt(7,1,"F1=HIT"
+			Outpt(8,1,"F2=STAND"
+
+			"Loop until the F1 or F2 keys are pressed
+			Repeat Ans==11 or Ans==12
+				getKy
+			End
+
+			If Ans==12
+				1→GE
+		End
+	End
+
+	"Deal the dealer cards until their total is at least 15
+	Repeat DC≥15
+		0→C
+		round(rand(51),0)→C
+
+		"An ace was dealt, randomly decide if the Ace is 1 or 11
+		If C≤3:Then
+			round(rand(1),0)
+			If Ans==0:Then
+				1+DC→DC
+			End
+			If Ans==1:Then
+				11+DC→DC
+			End
+		End
+
+		"Loop like above to determine the value of the number card
+		For(CI,4,32,4
+			If C≥CI and C<(CI+4)
+			Then
+				(CI/4+1)+DC→DC
+			End
+		End
+
+		"Face cards
+		If C≥36:Then
+			10+DC→DC
+		End
+	End
+
+	ClLCD
+
+	"Let the player decide how they want to use Aces
+	If ACT≥1:Then
+		Repeat ACT≤0
+			ClLCD
+			Outpt(1,1,"You have"):Outpt(1,10,ACT):Outpt(1,13,"ace(s)")
+			Outpt(3,5,"F1=1"
+			Outpt(4,5,"F2=11"
+
+			"Loop until a F1 or F2 was pressed
+			Repeat Ans==11 or Ans==12
+				getKy
+			End
+
+			If Ans==11:Then
+				1+PC→PC
+				ACT-1→ACT
+			End
+			If Ans==12:Then
+				11+PC→PC
+				ACT-1→ACT
+			End
+		End
+	End
+
+	ClLCD
+	Outpt(1,1,"You have:"
+	Outpt(2,19,PC
+	Pause
+	Outpt(3,1,"Dealer has:"
+	Outpt(4,19,DC
+
+	"Determine winner
+	"Dealer wins if dealer and player bust, dealer has 21, dealer is closer to 21, or player is bust
+	If (DC≥PC and DC≤21) or (DC≥PC and DC>21 and PC>21) or (DC==21) or (PC>21):Then
+		Outpt(6,1,"-----Dealer Wins-----"
+		POT-WAG→POT
+	Else
+		Outpt(6,1,"------You Win!------"
+		POT+WAG→POT
+	End
+	Pause
+
+	ClLCD
+	Outpt(1,1,"F1=Continue"
+	Outpt(2,1,"F2=Quit"
+
+	"Wait for F1 or F2 to be pressed
+	Repeat Ans==11 or Ans==12
+		getKy
+	End
+
+	If Ans==12
+		1→E 	"Exit the game
+End
+
+Lbl Q
+ClLCD
+Disp "Thanks For Playing!"
+Disp "Coded by:OMEGAΩ"
