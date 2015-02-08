@@ -1,0 +1,154 @@
+0→CVAR
+ClLCD
+Outpt(1,1,"=====Cheese Maze====="
+Outpt(3,1,"     by    OmegaΩ"
+Outpt(8,1,"Press enter to play"
+Pause
+
+ClLCD
+Outpt(1,1,"Introduction!"
+Outpt(3,1,"you are a mouse."
+Outpt(4,1,"use N S E W to"
+Outpt(5,1,"find the cheese!!!"
+Outpt(6,1,"then bring it back")
+Pause
+
+Lbl I
+ClLCD
+Disp "BOX I"
+If CVAR==1
+Then
+	Disp "You have the cheese"
+	Pause
+	Goto WINC
+Else
+	Disp "You dont have cheese"
+End
+Menu(1,"N",IV
+
+Lbl II
+ClLCD
+Disp "BOX II"
+Disp "WALL"
+Menu(1,"N",III
+
+Lbl III
+ClLCD
+Disp "BOX III"
+Menu(1,"N",V,2,"S",II,4,"E",IV
+
+Lbl IV
+ClLCD
+Disp "BOX IV"
+Menu(1,"N",VI,2,"S",I,5,"W",III
+
+Lbl V
+ClLCD
+Disp "BOX V"
+Menu(2,"S",III,4,"E",VI
+
+Lbl VI
+ClLCD
+Disp "BOX VI"
+Menu(1,"N",VIII,2,"S",IV,5,"W",V
+
+Lbl VII
+ClLCD
+Disp "BOX VII"
+Menu(1,"N",IX,5,"W",VIII
+
+Lbl VIII
+ClLCD
+Disp "BOX VIII"
+Menu(1,"N",X,2,"S,VI,4,"E",VII
+
+Lbl IX
+ClLCD
+Disp "BOX IX"
+Disp "WALL"
+Menu(2,"S",VII
+
+Lbl X
+ClLCD
+Disp "BOX X"
+Menu(2,"S",VIII,5,"W",XI
+
+Lbl XI
+ClLCD
+Disp "BOX XI"
+Menu(2,"S",XII,4,"E",X,5,"W",XIII
+
+Lbl XII
+ClLCD
+Disp "BOX XII"
+Disp "WALL"
+Menu(1,"N",XI
+
+Lbl XIII
+ClLCD
+Disp "BOX XIII"
+Menu(1,"N",XIV,4,"E",XI,5,"W",XVII
+
+Lbl XIV
+ClLCD
+Disp "BOX XIV"
+Disp "WALL"
+Menu(2,"S",XIII
+
+Lbl XV
+ClLCD
+Disp "BOX XV"
+Disp "WALL"
+Menu(5,"W",XVI)
+
+Lbl XVI
+ClLCD
+Disp "BOX XVI"
+Menu(1,"N",XVII,4,"E",XV,5,"W",XX
+
+Lbl XVII
+ClLCD
+Disp "BOX XVII"
+Menu(2,"S",XVI,4,"E",XVIII
+
+Lbl XVIII
+ClLCD
+Disp "BOX XVIII"
+Disp "WALL"
+Menu(2,"S",XIX
+
+Lbl XIX
+ClLCD
+Disp "BOX XIX"
+Menu(1,"N",XVIII,2,"S",XX,5,"W",XXI
+
+Lbl XX
+ClLCD
+Disp "BOX XX"
+Menu(1,"N",XIX,4,"E",XVI
+
+Lbl XXI
+ClLCD
+Disp "BOX XXI"
+Menu(2,"S",XXII,4,"E",XIX
+
+Lbl XXII
+ClLCD
+Disp "BOX XXII"
+Menu(1,"N",XXI,5,"W",XXIII
+
+Lbl XXIII
+ClLCD
+Disp "CHEESE"
+Disp "Take it back"
+1→CVAR
+Menu(4,"E",XXII
+
+Lbl WINC
+ClLCD
+Disp "YOU WIN!"
+Disp "$10000"
+POT+10000→POT
+Pause
+ClLCD
+Disp "THANKS FOR PLAYING"
